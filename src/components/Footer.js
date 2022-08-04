@@ -1,10 +1,16 @@
 import React from 'react';
+import styled from 'styled-components';
+
+const StyledFooter = styled.div`
+  text-align: center;
+  padding: 1rem;
+`;
 
 export const Footer = () => (
   <div>
-    <h5>
+    <StyledFooter>
       Designed and built by referring online references. @{' '}
       {new Date().getFullYear()}
-    </h5>
+    </StyledFooter>
   </div>
 );
