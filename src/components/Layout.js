@@ -12,7 +12,7 @@ const StyledLayout = styled.div`
 
 const StyledMain = styled.main`
   ${'' /* margin: 0 auto; */}
-  margin: 1rem;
+  margin: 0;
 `;
 
 const Layout = ({ children }) => (

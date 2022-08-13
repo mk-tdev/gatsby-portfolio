@@ -9,7 +9,28 @@ import {
 import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
 
+import RecentPosts from '../components/RecentPosts';
+
 const HomeStyles = styled.div`
+  .top-part {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1rem;
+    margin-bottom: 1rem;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+  .info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
   .icons {
     display: inline-grid;
     grid-template-columns: repeat(3, 1fr);
@@ -24,28 +45,39 @@ const HomeStyles = styled.div`
 `;
 
 const StyledImg = styled(Img)`
-  margin: -1rem;
+  margin: 0;
 `;
 
 function App({ data }) {
   console.log(data);
   const { social } = data.site.siteMetadata;
+  const { heroImg, angularImg, gatsbyImg } = data;
   return (
     <HomeStyles>
-      <h2>Home Page!</h2>
+      <div className="top-part">
+        <div className="info">
+          <h2>Home Page!</h2>
 
-      <StyledImg fluid={data.heroImg.childImageSharp.fluid} />
+          <div className="icons">
+            <a href={social.facebook} target="_blank" rel="noreferrer">
+              <FontAwesomeIcon icon={faFacebook} />
+            </a>
+            <a href={social.linkedin} target="_blank" rel="noreferrer">
+              <FontAwesomeIcon icon={faLinkedin} />
+            </a>
+            <a href={social.twitter} target="_blank" rel="noreferrer">
+              <FontAwesomeIcon icon={faTwitter} />
+            </a>
+          </div>
+        </div>
 
-      <div className="icons">
-        <a href={social.facebook} target="_blank" rel="noreferrer">
-          <FontAwesomeIcon icon={faFacebook} />
-        </a>
-        <a href={social.linkedin} target="_blank" rel="noreferrer">
-          <FontAwesomeIcon icon={faLinkedin} />
-        </a>
-        <a href={social.twitter} target="_blank" rel="noreferrer">
-          <FontAwesomeIcon icon={faTwitter} />
-        </a>
+        <div className="banner">
+          <StyledImg fluid={heroImg.childImageSharp.fluid} />
+        </div>
+      </div>
+
+      <div className="bottom-part">
+        <RecentPosts />
       </div>
     </HomeStyles>
   );
@@ -67,9 +99,9 @@ export const query = graphql`
       }
     }
 
-    heroImg: file(relativePath: { eq: "banner.jpg" }) {
+    heroImg: file(relativePath: { eq: "proj_two.jpg" }) {
       childImageSharp {
-        fluid(maxWidth: 1000) {
+        fluid(maxWidth: 800) {
           ...GatsbyImageSharpFluid
         }
       }

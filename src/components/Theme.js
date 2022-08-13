@@ -22,6 +22,21 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: ${(props) => props.theme.fonts.primary};
 }
+.container {
+  padding: 0 1rem;
+
+  @media (min-width: 992px) {
+    padding: 0;
+    margin: 0 auto;
+    width: 80%;
+  }
+
+  @media (min-width: 768px) {
+    padding: 0;
+    margin: 0 auto;
+    width: 60%;
+  }
+}
 `;
 
 const Theme = ({ children }) => (
